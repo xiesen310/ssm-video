@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import top.xiesen.video.mapper.SpeakerMapper;
 import top.xiesen.video.model.Course;
 import top.xiesen.video.model.Speaker;
 import top.xiesen.video.model.Subject;
@@ -40,6 +39,7 @@ public class VideoController {
 	public String videoList(String video_title, String speaker_name, String course_name,Model model,
 			@RequestParam(defaultValue="1")int page){
 		
+		@SuppressWarnings("rawtypes")
 		Page pages = vs.loadPage(video_title,speaker_name,course_name,page);
 		model.addAttribute("page", pages);
 		
@@ -52,7 +52,7 @@ public class VideoController {
 	}
 	
 	@RequestMapping("/addVideo.action")
-	public String addVideo(String video_title, String speaker_name, String course_name,Model model){
+	public String addVideo(Model model){
 		List<Speaker> speaker = ss.selectAllSpeaker();
 		model.addAttribute("speakerList", speaker);
 		
@@ -63,27 +63,15 @@ public class VideoController {
 	}
 	
 	@RequestMapping(value="/addVideo.action",method=RequestMethod.POST)
-	public String doAddVideo(String video_title, String speaker_id, String course_id,String video_length,String video_image_url,String video_url,String video_descr){
-		//保存video
-		Video video = new Video();
-		video.setVideo_title(video_title);
-		video.setSpeaker_id(Integer.parseInt(speaker_id));
-		video.setCourse_id(Integer.parseInt(course_id));
-		video.setVideo_length(Integer.parseInt(video_length));
-		video.setVideo_image_url(video_image_url);
-		video.setVideo_url(video_url);
-		video.setVideo_descr(video_descr);
+	public String doAddVideo(Video video){
 		video.setInsert_time(new Date(System.currentTimeMillis()));
-		
 		vs.insertVideo(video);
 		return "redirect:/video/videoList.action";
 	}
 	
 	@RequestMapping("/batchDelect.action")
 	public String batchDelect(String[] id){
-		/*for (String string : id) {
-			System.out.println("id集合 : " + string);
-		}*/
+		
 		vs.deleteBatch(id);
 		return "redirect:/video/videoList.action";
 	}
@@ -107,17 +95,9 @@ public class VideoController {
 		return "/video/editVideo";
 	}
 	@RequestMapping(value="/editVideo.action",method=RequestMethod.POST)
-	public String doEditVideo(int editid,String video_title,String speaker_id,String course_id,String video_length,String video_image_url,String video_url,String video_descr){
-		Video video = new Video();
-		video.setId(editid);
-		video.setVideo_title(video_title);
-		video.setSpeaker_id(Integer.parseInt(speaker_id));
-		video.setCourse_id(Integer.parseInt(course_id));
-		video.setVideo_length(Integer.parseInt(video_length));
-		video.setVideo_image_url(video_image_url);
-		video.setVideo_url(video_url);
-		video.setVideo_descr(video_descr);
-		
+	public String doEditVideo(Video video ){
+		System.out.println("演讲人id ： "+video.getSpeaker_id());
+		video.setUpdate_time(new Date(System.currentTimeMillis()));
 		vs.updateVideo(video);
 		
 		return "redirect:/video/videoList.action";

@@ -36,7 +36,7 @@
 
 			<!--表单开始-->
 
-			<form class="form-horizontal" action="${pageContext.request.contextPath }/video/editVideo.action?editid=${video.id}" method="post">
+			<form class="form-horizontal" action="${pageContext.request.contextPath }/video/editVideo.action?id=${video.id}" method="post">
 				
 				<div class="form-group">
 					<label for="inputEmail3" class="col-sm-2 control-label">视频标题</label>

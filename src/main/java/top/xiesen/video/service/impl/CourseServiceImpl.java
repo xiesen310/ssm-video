@@ -4,13 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.DigestUtils;
 
-import top.xiesen.video.mapper.AdminMapper;
 import top.xiesen.video.mapper.CourseMapper;
-import top.xiesen.video.model.Admin;
 import top.xiesen.video.model.Course;
-import top.xiesen.video.service.AdminService;
 import top.xiesen.video.service.CourseService;
 import top.xiesen.video.utils.Page;
 
@@ -25,6 +21,7 @@ public class CourseServiceImpl implements CourseService{
 		return cm.selectAllCoursePage(currentPage);
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public Page loadPage(int currentPage) {
 		Page<Course> page = new Page<>();
@@ -37,20 +34,17 @@ public class CourseServiceImpl implements CourseService{
 
 	@Override
 	public List<Course> selectAllCourseBySubject() {
-		// TODO Auto-generated method stub
 		return cm.selectAllCourseBySubject();
 	}
 
 	@Override
 	public void insertCourse(Course course) {
 		cm.insertCourse(course);
-		
 	}
 
 	@Override
 	public void deleteCourseById(int id) {
 		cm.deleteCourseById(id);
-		
 	}
 
 	@Override
@@ -61,12 +55,10 @@ public class CourseServiceImpl implements CourseService{
 	@Override
 	public void updateCourse(Course course) {
 		cm.updateCourse(course);
-		
 	}
 
 	@Override
 	public List<Course> selectAllCourse() {
-		
 		return cm.selectAllCourse();
 	}
 }

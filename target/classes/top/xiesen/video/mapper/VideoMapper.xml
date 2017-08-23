@@ -57,7 +57,7 @@
  
  <update id="updateVideo" parameterType="Video">
  	update video set video_title = #{video_title},speaker_id = #{speaker_id},course_id = #{course_id},video_length= #{video_length},
- 	video_image_url = #{video_image_url}, video_url = #{video_url},video_descr = #{video_descr},update_time = #{update_time},video_play_times=#{video_play_times}
+ 	video_image_url = #{video_image_url}, video_url = #{video_url},video_descr = #{video_descr},update_time = #{update_time}
  	where id = #{id}
  </update>
 </mapper>

@@ -15,6 +15,7 @@ public class VideoServiceImpl implements VideoService{
 	@Autowired
 	VideoMapper vm;
 	
+	@SuppressWarnings("rawtypes")
 	@Override
 	public Page loadPage(String video_title, String speaker_name, String course_name,int page) {
 		Page<Video> pages = new Page<>();
@@ -33,11 +34,9 @@ public class VideoServiceImpl implements VideoService{
 
 	@Override
 	public void deleteBatch(String[] id) {
-		
 		for (String string : id) {
 			vm.deleteBatch(Integer.parseInt(string));
 		}
-		
 	}
 
 	@Override
@@ -47,13 +46,12 @@ public class VideoServiceImpl implements VideoService{
 
 	@Override
 	public Video selectVideoById(int id) {
-		// TODO Auto-generated method stub
 		return vm.selectVideoById(id);
 	}
 
 	@Override
 	public void updateVideo(Video video) {
-		// TODO Auto-generated method stub
+		
 		vm.updateVideo(video);
 	}
 
