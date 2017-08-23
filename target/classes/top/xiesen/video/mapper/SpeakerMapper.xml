@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.xiesen.video.mapper.SpeakerMapper" >
+
+<insert id="addSpeaker" parameterType="Speaker">
+	insert into speaker (speaker_name,speaker_job,speaker_head_url,speaker_descr,insert_time) 
+	values(#{speaker_name},#{speaker_job},#{speaker_head_url},#{speaker_descr},#{insert_time})
+</insert>
+
+<select id="selectSpeakerByNameAndJob" parameterType="String" resultType="Speaker">
+	select * from speaker 
+	<where>
+		<if test="#{speaker_name} != null">
+			and speaker_name like '%' #{speaker_name} '%'
+		</if>
+		<if test="#{speaker_job} != null">
+			and speaker_job like '%' #{speaker_job} '%'
+		</if>
+		
+	</where>
+</select>
+
+<select id="selectAllSpeaker" resultType="Speaker">
+select * from speaker
+</select>
+
+<delete id="deleteSpeakerById" parameterType="int">
+	delete FROM speaker  where id = #{0}
+</delete>
+
+<update id="updateSpeakerById" parameterType="Speaker">
+	update speaker SET 
+	speaker_name = #{speaker_name}, 
+	speaker_job = #{speaker_job},
+	speaker_head_url=#{speaker_head_url},
+	speaker_descr = #{speaker_descr},
+	update_time = #{update_time}
+	 WHERE id = #{id};
+</update>
+
+
+<select id="selectSpeakerById" parameterType="int" resultType="Speaker">
+	select * from speaker where id = #{0}
+</select>
+</mapper>

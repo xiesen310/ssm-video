@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.xiesen.video.mapper.CourseMapper" >
+
+<select id="selectAllCoursePage" resultType="Course" parameterType="int">
+	SELECT c.*,s.subject_name FROM course c LEFT JOIN subject s ON c.subject_id = s.id LIMIT #{0},5;
+</select>
+
+<select id="selectAllCoursePageCount" resultType="int">
+	SELECT count(*) FROM course c LEFT JOIN subject s ON c.subject_id = s.id
+</select>
+
+<select id="selectAllCourseBySubject" resultType="Course">
+	SELECT c.*,s.subject_name FROM course c LEFT JOIN subject s ON c.subject_id = s.id
+</select>
+
+<insert id="insertCourse" parameterType="Course">
+	insert into course values(null,#{course_name},#{course_descr},#{insert_time},#{update_time},#{subject_id})
+</insert>
+
+<delete id="deleteCourseById" parameterType="int">
+	delete from course where id = #{0}
+</delete>
+
+<select id="selectCourseById" parameterType="int" resultType="Course">
+	select * from course where id = #{0}
+</select>
+
+<update id="updateCourse" parameterType="Course">
+	update course set course_name = #{course_name},
+	course_descr = #{course_descr},
+	update_time = #{update_time},
+	subject_id = #{subject_id} 
+	where id = #{id} 
+</update>
+
+<select id="selectAllCourse" resultType="Course">
+	select * from course
+</select>
+</mapper>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.xiesen.video.mapper.VideoMapper" >
+
+<select id="selectVideoCount" resultType="int" parameterType="String">
+	SELECT count(*)
+	FROM video v LEFT JOIN course c ON v.course_id = c.id 
+	LEFT JOIN speaker s ON v.speaker_id = s.id 
+	<where>
+		<if test="video_title != null">
+			v.video_title LIKE '%' #{video_title} '%'
+		</if>
+		<if test="speaker_name != null and speaker_name != '' ">
+			AND s.speaker_name = #{speaker_name}
+		</if>
+		<if test="course_name != null and course_name != '' ">
+			AND c.course_name = #{course_name}
+		</if>
+	</where>
+		
+	
+</select>
+ 
+ <select id="selectVideo" resultType="Video" parameterType="String">
+ 	SELECT v.*,s.speaker_name,c.course_name
+	FROM video v LEFT JOIN course c ON v.course_id = c.id 
+	LEFT JOIN speaker s ON v.speaker_id = s.id 
+	<where>
+		<if test="video_title != null">
+			v.video_title LIKE '%' #{video_title} '%'
+		</if>
+		<if test="speaker_name != null and speaker_name != '' ">
+			AND s.speaker_name = #{speaker_name}
+		</if>
+		<if test="course_name != null and course_name != '' ">
+			AND c.course_name = #{course_name}
+		</if>
+	</where>
+	
+	limit #{page},5
+ </select>
+ 
+ <insert id="insertVideo" parameterType="Video">
+ 	insert into video (video_title,speaker_id,course_id,video_length,video_image_url,video_url,video_descr,insert_time,video_play_times)
+ 	values(#{video_title},#{speaker_id},#{course_id},#{video_length},#{video_image_url},#{video_url},#{video_descr},#{insert_time},#{video_play_times})
+ </insert>
+ 
+ <delete id="deleteBatch" parameterType="int">
+ 	delete from video where id = #{deleteid}
+ </delete>
+ 
+ <select id="selectVideoById" parameterType="int" resultType="Video">
+ 	SELECT v.*,s.speaker_name,c.course_name
+	FROM video v LEFT JOIN course c ON v.course_id = c.id 
+	LEFT JOIN speaker s ON v.speaker_id = s.id where v.id = #{0}
+ </select>
+ 
+ <update id="updateVideo" parameterType="Video">
+ 	update video set video_title = #{video_title},speaker_id = #{speaker_id},course_id = #{course_id},video_length= #{video_length},
+ 	video_image_url = #{video_image_url}, video_url = #{video_url},video_descr = #{video_descr},update_time = #{update_time},video_play_times=#{video_play_times}
+ 	where id = #{id}
+ </update>
+</mapper>

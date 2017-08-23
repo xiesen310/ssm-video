@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.xiesen.video.mapper.AdminMapper" >
+
+<resultMap type="Admin" id="RM_login">
+<id property="id" column="id"/>
+<result property="loginName" column="login_name"/>
+<result property="loginPwd" column="login_pwd"/>
+</resultMap>
+
+<select id="login" resultMap="RM_login" parameterType="String">
+	select * from admin where login_name = #{loginName} and login_pwd = #{loginPwd}
+</select>
+ 
+ 
+ 
+</mapper>
