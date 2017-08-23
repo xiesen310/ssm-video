@@ -102,7 +102,5 @@ public class VideoController {
 		
 		return "redirect:/video/videoList.action";
 	}
-	
-	
-	
+
 }
