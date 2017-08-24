@@ -162,10 +162,10 @@
 				if(this.checked){
 					num++;
 					if(checks.length == num){
-					   document.getElementById("all").checked = true;
+					   $("#all").checked = true;
 					}
 				}else{
-					document.getElementById("all").checked = false;
+					$("#all").checked = false;
 					num--;
 				}
 				$("#deleteNum").html(num);

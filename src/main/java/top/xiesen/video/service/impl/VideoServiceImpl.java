@@ -1,6 +1,8 @@
 package top.xiesen.video.service.impl;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,6 +55,12 @@ public class VideoServiceImpl implements VideoService{
 	public void updateVideo(Video video) {
 		
 		vm.updateVideo(video);
+	}
+
+	@Override
+	public List<Video> selectAllVideo() {
+		// TODO Auto-generated method stub
+		return vm.selectAllVideo();
 	}
 
 }

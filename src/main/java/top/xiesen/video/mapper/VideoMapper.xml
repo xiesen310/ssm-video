@@ -60,4 +60,8 @@
  	video_image_url = #{video_image_url}, video_url = #{video_url},video_descr = #{video_descr},update_time = #{update_time}
  	where id = #{id}
  </update>
+ 
+ <select id="selectAllVideo"  resultType="Video">
+ 	SELECT * FROM video limit 0,5
+ </select>
 </mapper>

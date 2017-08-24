@@ -1,6 +1,8 @@
 package top.xiesen.video.service;
 
 
+import java.util.List;
+
 import top.xiesen.video.model.Video;
 import top.xiesen.video.utils.Page;
 
@@ -17,6 +19,8 @@ public interface VideoService {
 	Video selectVideoById(int id);
 
 	void updateVideo(Video video);
+
+	List<Video> selectAllVideo();
 
 
 }

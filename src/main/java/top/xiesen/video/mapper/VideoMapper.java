@@ -22,4 +22,6 @@ public interface VideoMapper {
 
 	void updateVideo(Video video);
 
+	List<Video> selectAllVideo();
+
 }

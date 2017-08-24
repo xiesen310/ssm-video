@@ -25,7 +25,7 @@
 							<a href="${pageContext.request.contextPath }/course/courseList.action">课程管理</a>
 						</li>
 						<li>
-							<a href="#">统计管理</a>
+							<a href="${pageContext.request.contextPath }/count/countList.action">统计管理</a>
 						</li>
 					</ul>
 
