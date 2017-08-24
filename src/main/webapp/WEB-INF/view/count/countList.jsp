@@ -7,9 +7,15 @@
 <meta charset="utf-8">
 <title>ECharts</title>
 <!-- 引入 echarts.js -->
-<script
-	src="${pageContext.request.contextPath }/js/echarts.common.min.js"></script>
-	
+<script src="${pageContext.request.contextPath }/js/echarts.common.min.js"></script>
+
+<script type="text/javascript">
+	$(function(){
+		$("#ajax").click(function(){
+			$("#main").toggle("slow");
+		});
+	});
+</script>
 </head>
 <body>
 	<!-- 导航栏开始 -->
@@ -21,10 +27,15 @@
 			<h2>视频列表-视频管理</h2>
 		</div>
 	</div>
-	<!-- 巨幕开始 -->
-	<div id="main" style="width: 800px; height: 600px; margin: 0 auto;"></div>
-
-
+	<!-- 巨幕结束 -->
+	
+	<div id="main" style="width: 1000px; height: 600px; margin: 0 auto;"></div>
+	<!-- ajax加载开始 -->
+	<div class="container">
+		<a class="btn btn-success" id="ajax">ajax加载视图</a>
+	</div>
+	<!-- ajax加载结束 -->
+	
 	<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
 	<script type="text/javascript">
 		var myChart = echarts.init(document.getElementById('main'));
@@ -47,7 +58,7 @@
 				data : []
 			},
 			yAxis : {
-				name: '平均播放次数(times)'
+				name: ['平均播放次数(times)']
 			},
 			series : [ {
 				name : '平均播放次数',
@@ -71,10 +82,10 @@
 				//请求成功时执行该函数内容，result即为服务器返回的json对象
 				if (result) {
 					for (var i = 0; i < result.length; i++) {
-						names.push(result[i].video_title); //挨个取出类别并填入类别数组
+						names.push(result[i].course_name); //挨个取出类别并填入类别数组
 					}
 					for (var i = 0; i < result.length; i++) {
-						nums.push(result[i].video_play_times); //挨个取出销量并填入销量数组
+						nums.push(result[i].avg); //挨个取出销量并填入销量数组
 					}
 					myChart.hideLoading(); //隐藏加载动画
 					myChart.setOption({ //加载数据图表
@@ -97,7 +108,6 @@
 				myChart.hideLoading();
 			}
 		})
-	</script>
 	</script>
 
 	<!-- 页脚开始 -->

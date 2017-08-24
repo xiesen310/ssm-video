@@ -11,6 +11,8 @@
 		<link rel="icon" href="${pageContext.request.contextPath }/img/favicon.png" type="image/x-icon">
 		<script src="${pageContext.request.contextPath }/js/jquery-1.12.4.min.js"></script>
 		<script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.validate.min.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath }/js/messages_zh.min.js"></script>
 		<style>
 			.container{
 				width: 300px;
@@ -21,19 +23,44 @@
 			body{
 				background-color: #e4e4e4;
 			}
-			
 		</style>
+		
+		<script type="text/javascript">
+		$(function(){
+			$("#checkForm").validate({
+				rules:{
+					username:{
+						required:true,
+						minlength:3
+					},
+					password:{
+						required:true
+					}
+				},
+				messages:{
+					username:{
+						required:"用户名不能为空",
+						minlength:"长度太小"
+					},
+					password:{
+						required:"请输入密码"
+					}
+				}
+			});
+		});
+	</script>
+		
 	</head>
 
 	<body>
 		<div class="container">
 			<img src="${pageContext.request.contextPath }/img/logo.png" alt="智游教育" class="img-rounded" width="260px" height="60px">
-			<form action="${pageContext.request.contextPath }/admin/dologin.action" method="post">
+			<form action="${pageContext.request.contextPath }/admin/dologin.action" method="post" id="checkForm">
 				<div class="form-group">
-					<input type="text" class="form-control" name="username" value="admin" placeholder="用户名">
+					<input type="text" class="form-control" name="username"  placeholder="用户名">
 				</div>
 				<div class="form-group">
-					<input type="password" class="form-control" name="password" value="admin" placeholder="登录密码">
+					<input type="password" class="form-control" name="password"  placeholder="登录密码">
 				</div>
 				<button type="submit" class="btn btn-success btn-block">登录</button>
 			</form>

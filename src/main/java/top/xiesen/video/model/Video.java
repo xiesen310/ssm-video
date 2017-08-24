@@ -2,10 +2,7 @@ package top.xiesen.video.model;
 
 import java.sql.Date;
 
-/**
- * @author Administrator
- *
- */
+
 public class Video {
 
 		private Integer id;
@@ -30,9 +27,17 @@ public class Video {
 
 	    private Integer video_play_times;
 	    
-	    
 	    private String speaker_name;
 	    private String course_name;
+	    private Double avg;
+	    
+	    
+		public Double getAvg() {
+			return avg;
+		}
+		public void setAvg(Double avg) {
+			this.avg = avg;
+		}
 		public Integer getId() {
 			return id;
 		}
@@ -118,7 +123,7 @@ public class Video {
 					+ course_id + ", video_length=" + video_length + ", video_image_url=" + video_image_url
 					+ ", video_url=" + video_url + ", video_descr=" + video_descr + ", insert_time=" + insert_time
 					+ ", update_time=" + update_time + ", video_play_times=" + video_play_times + ", speaker_name="
-					+ speaker_name + ", course_name=" + course_name + "]";
+					+ speaker_name + ", course_name=" + course_name + ", avg=" + avg + "]";
 		}
 		
 	    

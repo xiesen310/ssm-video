@@ -62,6 +62,7 @@
  </update>
  
  <select id="selectAllVideo"  resultType="Video">
- 	SELECT * FROM video limit 0,5
+ 	<!-- SELECT * FROM video limit 0,5 -->
+ 	SELECT c.course_name ,avg(v.video_play_times) avg FROM video v RIGHT JOIN course c ON c.id = v.course_id GROUP BY v.course_id;
  </select>
 </mapper>
