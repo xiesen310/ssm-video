@@ -144,8 +144,18 @@
 				    content: '您确定删除吗？',
 				    buttons: {
 				    	确定: function () {
-							window.location.href = '${pageContext.request.contextPath }/speaker/deleteSpeaker.action?id=' + id;
+							//window.location.href = '${pageContext.request.contextPath }/speaker/deleteSpeaker.action?id=' + id;
 				    		/* $.alert('确定'); */
+				    		// ajax异步删除数据
+				    		$.ajax({
+								url: "${pageContext.request.contextPath }/speaker/deleteSpeaker.action",
+								dataType:"text",
+								data: {"id":id},
+								success:function(msg){
+									location.reload();
+								},
+								type:"GET"
+				    		});
 				        },
 				       	 取消: function () {
 				            /* $.alert('取消'); */
@@ -154,8 +164,6 @@
 				});
 			}
 		</script>
-		
-		
 
 	<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-confirm.min.js" ></script>	
 		
