@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -10,26 +9,19 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>主讲人管理</title>
+		
 		<link rel="icon" href="img/favicon.png" type="image/x-icon">
-		<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-1.12.4.min.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-confirm.min.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-1.12.4.min.js" ></script>
+		<link href="${pageContext.request.contextPath }/css/bootstrap.min.css" rel="stylesheet">
 		<link href="${pageContext.request.contextPath }/css/bootstrap.min.css" rel="stylesheet">
 		
-		<link href="${pageContext.request.contextPath }/css/bootstrap.min.css" rel="stylesheet">
 		<link href="${pageContext.request.contextPath }/css/jquery-confirm.min.css" rel="stylesheet">
 		<style>
 			body{
 				background-color: #e4e4e4;
 			}
 		</style>
-		
-		<script type="text/javascript">
-			$(function (){
-				
-			});
-			
-			
-		</script>
+
 	</head>
 
 	<body>
@@ -148,27 +140,27 @@
 			function deleteData(id){
 				//alert(id);
 				$.confirm({
-				    title: 'Confirm!',
-				    content: 'Simple confirm!',
+				    title: '提示信息',
+				    content: '您确定删除吗？',
 				    buttons: {
-				        confirm: function () {
-				            $.alert('Confirmed!');
+				    	确定: function () {
+							window.location.href = '${pageContext.request.contextPath }/speaker/deleteSpeaker.action?id=' + id;
+				    		/* $.alert('确定'); */
 				        },
-				        cancel: function () {
-				            $.alert('Canceled!');
-				        },
-				        somethingElse: {
-				            text: 'Something else',
-				            btnClass: 'btn-blue',
-				            keys: ['enter', 'shift'],
-				            action: function(){
-				                $.alert('Something else?');
-				            }
+				       	 取消: function () {
+				            /* $.alert('取消'); */
 				        }
 				    }
 				});
 			}
 		</script>
+		
+		
+
+	<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-confirm.min.js" ></script>	
+		
+		
+		
 	</body>
 
 
