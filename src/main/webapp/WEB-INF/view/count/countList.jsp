@@ -20,7 +20,10 @@
 </head>
 <body>
 	<!-- 导航栏开始 -->
-	<%@ include file="../head.jsp"%>
+<%-- 	<%@ include file="../head.jsp"%> --%>
+	<jsp:include page="/WEB-INF/view/head.jsp">
+		<jsp:param value="count" name="formjsp"/>
+	</jsp:include>
 	<!-- 导航栏结束 -->
 	<!-- 巨幕开始 -->
 	<div class="container">

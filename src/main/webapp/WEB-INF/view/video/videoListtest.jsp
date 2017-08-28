@@ -31,7 +31,9 @@
 
 	<body>
 	<!-- 导航栏开始 -->
-	<%@ include file="../head.jsp" %>
+	<jsp:include page="/WEB-INF/view/head.jsp">
+		<jsp:param value="video" name="formjsp"/>
+	</jsp:include>
 	<!-- 导航栏结束 -->
 		<div class="container">
 			<!--巨幕开始-->
@@ -39,7 +41,7 @@
 				<h2>视频列表-视频管理</h2>
 			</div>
 			<!--巨幕结束-->
-<button id="btn">按钮</button>
+			<button id="btn">按钮</button>
 			<!--搜索表单开始-->
 			<form class="form-inline" action="${pageContext.request.contextPath }/video/videoList.action">
 				<!--添加视频开始-->

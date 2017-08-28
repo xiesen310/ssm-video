@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!--导航开始-->
 		<nav class="navbar navbar-inverse" style="margin-bottom: 0px;">
 			<div class="container">
@@ -15,16 +16,16 @@
 
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9">
 					<ul class="nav navbar-nav">
-						<li>
-							<a href="${pageContext.request.contextPath }/video/videoList.action">视频管理</a>
+						<li <c:if test='${param.formjsp == "video"}'>class="active"</c:if>>
+							<a href="${pageContext.request.contextPath }/video/videoList.action">主讲人管理</a>
 						</li>
-						<li>
+						<li <c:if test='${param.formjsp == "speaker"}'>class="active"</c:if>>
 							<a href="${pageContext.request.contextPath }/speaker/speakerList.action">主讲人管理</a>
 						</li>
-						<li>
+						<li <c:if test='${param.formjsp == "course"}'>class="active"</c:if>>
 							<a href="${pageContext.request.contextPath }/course/courseList.action">课程管理</a>
 						</li>
-						<li>
+						<li <c:if test='${param.formjsp == "count"}'>class="active"</c:if>>
 							<a href="${pageContext.request.contextPath }/count/countList.action">统计管理</a>
 						</li>
 					</ul>

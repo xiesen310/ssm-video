@@ -13,7 +13,7 @@
 		<script src="${pageContext.request.contextPath }/js/jquery-1.12.4.min.js"></script>
 		<link rel="icon" href="${pageContext.request.contextPath }/img/favicon.png" type="image/x-icon">
 		<link href="${pageContext.request.contextPath }/css/bootstrap.min.css" rel="stylesheet">
-		<link href="${pageContext.request.contextPath }/css/jquery-confirm.min.css" rel="stylesheet">
+		<link  href="${pageContext.request.contextPath }/css/jquery-confirm.min.css" rel="stylesheet">
 		
 		<script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
 		<script src="${pageContext.request.contextPath }/js/jquery-confirm.min.js"></script>
@@ -24,11 +24,15 @@
 			}
 			
 		</style>
+	
+		
 	</head>
 
 	<body>
 	<!-- 导航栏开始 -->
-	<%@ include file="../head.jsp" %>
+	<jsp:include page="/WEB-INF/view/head.jsp">
+		<jsp:param value="video" name="formjsp"/>
+	</jsp:include>
 	<!-- 导航栏结束 -->
 		<div class="container">
 			<!--巨幕开始-->
@@ -36,7 +40,7 @@
 				<h2>视频列表-视频管理</h2>
 			</div>
 			<!--巨幕结束-->
-		<button id="btn" onclick="btnonclick()">按钮</button>
+			
 			<!--搜索表单开始-->
 			<form class="form-inline" action="${pageContext.request.contextPath }/video/videoList.action">
 				<!--添加视频开始-->
@@ -103,12 +107,11 @@
 						<td>
 							<input type="hidden" id="url">
 							<a onclick="delcfm('${pageContext.request.contextPath }/video/deleteVideo.action?delid=${video.id}')" class="glyphicon glyphicon-trash" style="text-decoration: none;" title="删除"></a>
+							<%-- <a onclick="deleteData(${video.id})" class="glyphicon glyphicon-trash" style="text-decoration: none;" title="删除"></a> --%>
 						</td>
 					</tr>
 					</c:forEach>
 				
-					
-					
 				</tbody>
 			</table>
 		
@@ -206,7 +209,7 @@
 			}
 			
 			
-			function btnonclick(){
+		 function btnonclick(){
 				//alert("111111");
 				$.alert('Content here', 'Title here');
 				$.confirm({
@@ -218,9 +221,13 @@
 				    cancel: function(){
 				        $.alert('Canceled!')
 				    }
-				});
+				}); 
 				
-			}
+			} 
+		
+		
+		
+		
 		</script>
 	</body>
 

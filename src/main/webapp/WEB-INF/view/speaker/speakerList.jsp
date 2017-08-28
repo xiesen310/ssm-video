@@ -11,20 +11,33 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>主讲人管理</title>
 		<link rel="icon" href="img/favicon.png" type="image/x-icon">
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-		<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-1.12.4.min.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-confirm.min.js"></script>
+		<link href="${pageContext.request.contextPath }/css/bootstrap.min.css" rel="stylesheet">
+		
+		<link href="${pageContext.request.contextPath }/css/bootstrap.min.css" rel="stylesheet">
+		<link href="${pageContext.request.contextPath }/css/jquery-confirm.min.css" rel="stylesheet">
 		<style>
 			body{
 				background-color: #e4e4e4;
 			}
 		</style>
+		
+		<script type="text/javascript">
+			$(function (){
+				
+			});
+			
+			
+		</script>
 	</head>
 
 	<body>
 		
 	<!-- 导航栏开始 -->
-	<%@ include file="../head.jsp" %>
+	<jsp:include page="/WEB-INF/view/head.jsp">
+		<jsp:param value="speaker" name="formjsp"/>
+	</jsp:include>
 	<!-- 导航栏结束 -->
 	
 		<div class="container">
@@ -76,7 +89,10 @@
 							<td>${speaker.speaker_descr }</td>
 							<input type="hidden" id="url" value=""/>
 							<td><a href="${pageContext.request.contextPath }/speaker/editSpeaker.action?id=${speaker.id}" class="glyphicon glyphicon-edit" style="text-decoration: none;" title="编辑"></a></td>
-							<td><a onclick="delcfm('${pageContext.request.contextPath }/speaker/deleteSpeaker.action?id=${speaker.id}')"  class="glyphicon glyphicon-trash" style="text-decoration: none;" title="删除"></a></td>
+							<td>
+								<%-- <a onclick="delcfm('${pageContext.request.contextPath }/speaker/deleteSpeaker.action?id=${speaker.id}')"  class="glyphicon glyphicon-trash" style="text-decoration: none;" title="删除"></a> --%>
+								<a onclick="deleteData(${speaker.id})"  class="glyphicon glyphicon-trash" style="text-decoration: none;" title="删除"></a>
+							</td>
 						</tr>
 					</c:forEach>
 					
@@ -128,7 +144,33 @@
 				window.location.href = url;
 				/* alert(url); */
 			}
+			
+			function deleteData(id){
+				//alert(id);
+				$.confirm({
+				    title: 'Confirm!',
+				    content: 'Simple confirm!',
+				    buttons: {
+				        confirm: function () {
+				            $.alert('Confirmed!');
+				        },
+				        cancel: function () {
+				            $.alert('Canceled!');
+				        },
+				        somethingElse: {
+				            text: 'Something else',
+				            btnClass: 'btn-blue',
+				            keys: ['enter', 'shift'],
+				            action: function(){
+				                $.alert('Something else?');
+				            }
+				        }
+				    }
+				});
+			}
 		</script>
 	</body>
+
+
 
 </html>
