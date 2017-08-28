@@ -10,19 +10,22 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>视频管理</title>
-		<script src="${pageContext.request.contextPath }/js/jquery-1.12.4.min.js"></script>
 		<link rel="icon" href="${pageContext.request.contextPath }/img/favicon.png" type="image/x-icon">
 		<link href="${pageContext.request.contextPath }/css/bootstrap.min.css" rel="stylesheet">
-		<link href="${pageContext.request.contextPath }/css/jquery-confirm.min.css" rel="stylesheet">
-		
+		<link href="${pageContext.request.contextPath }/css/jquery-confirm.css" rel="stylesheet">
+		<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 		<script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
-		<script src="${pageContext.request.contextPath }/js/jquery-confirm.min.js"></script>
-		
+		<script src="${pageContext.request.contextPath }/js/jquery-confirm.js"></script>
 		<style>
 			body {
 				background-color: #e4e4e4;
 			}
 			
+			$(function(){
+				$("#btn").click(function(){
+					alert("1111");
+				});
+			});
 		</style>
 	</head>
 
@@ -36,7 +39,7 @@
 				<h2>视频列表-视频管理</h2>
 			</div>
 			<!--巨幕结束-->
-		<button id="btn" onclick="btnonclick()">按钮</button>
+<button id="btn">按钮</button>
 			<!--搜索表单开始-->
 			<form class="form-inline" action="${pageContext.request.contextPath }/video/videoList.action">
 				<!--添加视频开始-->
@@ -205,22 +208,6 @@
 				/* alert(url); */
 			}
 			
-			
-			function btnonclick(){
-				//alert("111111");
-				$.alert('Content here', 'Title here');
-				$.confirm({
-				    title: 'Confirm!',
-				    content: 'Simple confirm!',
-				    confirm: function(){
-				        $.alert('Confirmed!');
-				    },
-				    cancel: function(){
-				        $.alert('Canceled!')
-				    }
-				});
-				
-			}
 		</script>
 	</body>
 
