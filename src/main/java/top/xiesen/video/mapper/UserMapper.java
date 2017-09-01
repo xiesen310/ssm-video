@@ -2,9 +2,10 @@ package top.xiesen.video.mapper;
 
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 import top.xiesen.video.model.Admin;
 import top.xiesen.video.model.User;
-
+@Repository
 public interface UserMapper {
 	void regist(User user);
 	User selectUserByEmail(String email);

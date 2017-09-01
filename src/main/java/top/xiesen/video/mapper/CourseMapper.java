@@ -2,8 +2,9 @@ package top.xiesen.video.mapper;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
 import top.xiesen.video.model.Course;
-
+@Repository
 public interface CourseMapper {
 
 	List<Course> selectAllCoursePage(int currentPage);

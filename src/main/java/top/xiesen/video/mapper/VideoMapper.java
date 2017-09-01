@@ -5,9 +5,10 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import org.springframework.stereotype.Repository;
 import top.xiesen.video.model.Video;
 
-
+@Repository
 public interface VideoMapper {
 
 	int selectVideoCount(@Param("video_title")String video_title,@Param("speaker_name")String speaker_name,@Param("course_name")String course_name);

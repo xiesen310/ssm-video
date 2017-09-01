@@ -4,8 +4,9 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import org.springframework.stereotype.Repository;
 import top.xiesen.video.model.Speaker;
-
+@Repository
 public interface SpeakerMapper {
 	 void addSpeaker(Speaker speaker);
 
