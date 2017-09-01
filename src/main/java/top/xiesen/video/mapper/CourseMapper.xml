@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.xiesen.video.mapper.CourseMapper" >
+
+<select id="selectAllCoursePage" resultType="Course" parameterType="int">
+	SELECT c.*,s.subject_name FROM course c LEFT JOIN subject s ON c.subject_id = s.id LIMIT #{0},5;
+</select>
+
+<select id="selectAllCoursePageCount" resultType="int">
+	SELECT count(*) FROM course c LEFT JOIN subject s ON c.subject_id = s.id
+</select>
+
+<select id="selectAllCourseBySubject" resultType="Course">
+	SELECT c.*,s.subject_name FROM course c LEFT JOIN subject s ON c.subject_id = s.id
+</select>
+
+<insert id="insertCourse" parameterType="Course">
+	insert into course values(null,#{course_name},#{course_descr},#{insert_time},#{update_time},#{subject_id})
+</insert>
+
+<delete id="deleteCourseById" parameterType="int">
+	delete from course where id = #{0}
+</delete>
+
+<select id="selectCourseById" parameterType="int" resultType="Course">
+	select * from course where id = #{0}
+</select>
+
+<update id="updateCourse" parameterType="Course">
+	update course set course_name = #{course_name},
+	course_descr = #{course_descr},
+	update_time = #{update_time},
+	subject_id = #{subject_id} 
+	where id = #{id} 
+</update>
+
+<select id="selectAllCourse" resultType="Course">
+	select * from course
+</select>
+
+	<resultMap id="BaseResultMap" type="Course" >
+		<id column="cid" property="id" jdbcType="INTEGER" />
+		<result column="course_name" property="course_name" jdbcType="VARCHAR" />
+		<result column="course_descr" property="course_descr" jdbcType="VARCHAR" />
+		<result column="insert_time" property="insert_time" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="update_time" jdbcType="TIMESTAMP" />
+
+		<collection property="videoList" ofType="Video">
+			<id column="vid" property="id"></id>
+			<result column="video_title" property="video_title" jdbcType="VARCHAR" />
+			<result column="speaker_id" property="speaker_id" jdbcType="INTEGER" />
+			<result column="course_id" property="course_id" jdbcType="INTEGER" />
+			<result column="video_length" property="video_length" jdbcType="INTEGER" />
+			<result column="video_image_url" property="video_image_url" jdbcType="VARCHAR" />
+			<result column="video_url" property="video_url" jdbcType="VARCHAR" />
+			<result column="video_descr" property="video_descr" jdbcType="VARCHAR" />
+			<result column="insert_time" property="insert_time" jdbcType="TIMESTAMP" />
+			<result column="update_time" property="update_time" jdbcType="TIMESTAMP" />
+			<result column="video_play_times" property="video_play_times" jdbcType="INTEGER" />
+			<result column="speaker_name" property="speaker_name" jdbcType="VARCHAR" />
+			<result column="course_name" property="course_name" jdbcType="VARCHAR" />
+			<result column="avg" property="avg" jdbcType="DOUBLE" />
+		</collection>
+
+	</resultMap>
+
+
+	<select id="selectCourseBySubjectId" resultMap="BaseResultMap" parameterType="int">
+		SELECT v.*,c.* ,v.id vid ,c.id cid FROM video v LEFT JOIN course c ON c.id =v.course_id  WHERE c.id IN (SELECT c.id FROM course WHERE  c.subject_id = #{0});
+	</select>
+</mapper>

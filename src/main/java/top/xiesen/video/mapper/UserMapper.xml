@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.xiesen.video.mapper.UserMapper" >
+
+	<insert id="regist" parameterType="User">
+		INSERT INTO USER (email,password,insert_time) VALUES (#{email},#{password},#{insert_time})
+	</insert>
+ 
+ 	<select id="selectUserByEmail" parameterType="String" resultType="User">
+	SELECT * FROM USER WHERE email = #{0}
+	</select>
+
+	<select id="login" parameterType="User" resultType="User">
+		SELECT * FROM USER WHERE email = #{email} AND password = #{password}
+	</select>
+	
+	<update id="updateBymail" parameterType="User">
+		UPDATE USER SET captcha = #{captcha} WHERE email = #{email}
+	</update>
+	
+	<select id="selectCaptcha" parameterType="User" resultType="String">
+		SELECT captcha FROM USER WHERE email = #{email}
+	</select>
+
+	<update id="updatePwd" parameterType="User">
+		UPDATE USER SET password = #{password} WHERE email = #{email}
+	</update>
+
+	<update id="updateProfile" parameterType="User">
+		UPDATE USER SET nick_name = #{nick_name},sex=#{sex},birthday=#{birthday},
+			province=#{province},city=#{city},update_time=#{update_time}
+		WHERE email = #{email}
+	</update>
+	<select id="selectUserPassword" parameterType="String" resultType="String">
+		SELECT password FROM USER WHERE email = #{0}
+	</select>
+	<update id="updatePassword" parameterType="String">
+		UPDATE USER SET password = #{0} WHERE email = #{1}
+	</update>
+
+	<update id="updateHeadUrl" parameterType="String">
+		UPDATE USER SET head_url = #{0} WHERE email = #{1}
+	</update>
+
+</mapper>
